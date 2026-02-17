@@ -136,3 +136,37 @@ console.log(x); //  Error
 console.log(y); //  Error
 ```
 let এবং const হলো ব্লক স্কোপ কিন্তু var গ্লোবাল স্কোপ। 
+
+# 4) What is the significance of async/await in fetching API data?
+
+আমরা জানিযে জাভাস্ক্রিপ্ট synchronus ভাবে কাজ করলেও আমরা বিশেষ কিছু উপায়ে asynchronus কাজ গুলো করতে পারি। 
+এই asynchronus কাজ গুলো করতে মূলত আমাদের async /await বিশেষ ভাবে কাজে লাগে।  
+জাভাস্ক্রিপ্ট এর এই asynchronus বেহেভিওর আমরা অনেক ভাবে করতে পারি setTimeOut() বা setIntervel() এর দ্বারা বা কলব্যাক এবং promise এর মাধ্যমে এই কাজ গুলো করতে পারি।  
+কিন্তু এগুলোর মাধ্যমে করতে গেলে কোড কিছুটা জটিল এবং আমাদের বুঝতে সমস্যা হয় যখন কোড অনেক বড়ো হয়। 
+
+কলব্যাক দিয়ে করতে গেলে কলব্যাক hell তৈরী হয় এবং promise এর মাধ্যমে করতে গেলে। then () এর চেইন তৈরী হয় যেটা বুঝতে সমস্যা হয়।  এ জন্য আমরা async /await ব্যবহার করি 
+### async / await ছাড়া 
+```js
+fetch("https://api.example.com/data")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+```
+### async / await দিয়ে 
+```js
+async function getData() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+getData();
+```
