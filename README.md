@@ -63,3 +63,76 @@ const result = numbers.foreach(number => number * number);
 
 console.log(result); // Output: undefined
 ```
+
+
+# What is the difference between == and ===?
+== (Loose Equality)
+
+== compare করে value, কিন্তু compare করার আগে type convert করে নেয় (Type Coercion করে)।
+
+```js
+console.log(5 == "5"); // true
+```
+== প্রথমে string কে number এ convert করে
+তারপর compare করে → 5 == 5 → true
+
+### === (Strict Equality)
+
+=== compare করে value + type দুটোই এখানে কোনো type conversion হয় না।
+
+```js
+console.log(5 === "5"); // false
+```
+
+
+#  Explain the concept of Scope in JavaScript (Global, Function, Block)
+
+Scope মানে হলো — একটি variable কোথা থেকে access করা যাবে এবং কোথা থেকে যাবে না।
+সাধারণত child তার parent এর সব প্রপার্টি এক্সেস করতে পারে কিন্তু প্যারেন্ট তার চাইল্ড এর কোনো প্রপার্টি এক্সেস করতে পারে না। 
+
+JavaScript এ মূলত ৩ ধরনের Scope আছে 
+Global Scope
+Function Scope
+Block Scope
+
+### Global scope : 
+যে variable কোনো function বা block এর বাইরে declare করা হয়,এবং সেটি ফাংশন এর যে কোনো জায়গা থেকে এক্সেস করা যায় তাই  global scope .
+
+```js
+let name = "Ashik";
+
+function greet() {
+  console.log(name);
+}
+
+greet(); // Ashik
+```
+
+### Function Scope
+যে variable function এর ভিতরে declare করা হয় এবং সেটি শুধু ওই function এর ভিতরেই accessible।
+অর্থাৎ ঐ ফাংশন এর বাহির থেকে ঐ ফাংশন এর কোনো ভ্যালু এক্সেস করতে চাইলে এরর হবে। 
+
+```js
+function test() {
+  let age = 25;
+  console.log(age);
+}
+
+test(); // 25
+console.log(age); // Error
+```
+
+
+# Block Scope
+Block মানে { } এর ভিতরের অংশ. let এবং const block scope.
+
+```js
+if (true) {
+  let x = 10;
+  const y = 20;
+}
+
+console.log(x); //  Error
+console.log(y); //  Error
+```
+let এবং const হলো ব্লক স্কোপ কিন্তু var গ্লোবাল স্কোপ। 
